@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yan.www.mapper.UserMapper">
+    <select id="queryById" resultMap="userResult">
+        select
+          u.id as u_id,
+          u.username as u_username,
+          u.hashed_password as u_hashed_password,
+          a.province as a_province,
+          a.city as a_city,
+          a.detail as a_detail
+        from user u, address a
+        where u.id=#{id} and a.u_id=#{id}
+    </select>
+
+    <resultMap id="userResult" type="User">
+        <id property="id" column="u_id" />
+        <result property="username" column="u_username" />
+        <result property="hashedPassword" column="u_hashed_password" />
+        <association property="address" javaType="Address">
+            <result property="province" column="a_province" />
+            <result property="city" column="a_city" />
+            <result property="detail" column="a_detail" />
+        </association>
+    </resultMap>
+</mapper>
