@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 
 public class BlogTest {
-    private static Logger logger = Logger.getLogger(App.class.getSimpleName());
+    private static Logger logger = Logger.getLogger(BlogTest.class.getSimpleName());
 
     @Test
     public void testBlogMapper() {

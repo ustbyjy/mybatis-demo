@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 
 public class UserTest {
-    private static Logger logger = Logger.getLogger(App.class.getSimpleName());
+    private static Logger logger = Logger.getLogger(UserTest.class.getSimpleName());
 
     @Test
     public void testUserMapper() {

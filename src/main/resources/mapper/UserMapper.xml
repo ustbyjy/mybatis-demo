@@ -16,13 +16,13 @@
     </select>
 
     <resultMap id="userResult" type="User">
-        <id property="id" column="u_id" />
-        <result property="username" column="u_username" />
-        <result property="hashedPassword" column="u_hashed_password" />
+        <id property="id" column="u_id"/>
+        <result property="username" column="u_username"/>
+        <result property="hashedPassword" column="u_hashed_password"/>
         <association property="address" javaType="Address">
-            <result property="province" column="a_province" />
-            <result property="city" column="a_city" />
-            <result property="detail" column="a_detail" />
+            <result property="province" column="a_province"/>
+            <result property="city" column="a_city"/>
+            <result property="detail" column="a_detail"/>
         </association>
     </resultMap>
 </mapper>
