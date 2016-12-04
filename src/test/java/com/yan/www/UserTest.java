@@ -26,8 +26,10 @@ public class UserTest {
 
             UserMapper userMapper = session.getMapper(UserMapper.class);
             User user = userMapper.queryById(1);
-
             logger.info(user.toString());
+
+            User cacheUser = userMapper.queryById(1);
+            logger.info(cacheUser.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -3,26 +3,42 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yan.www.mapper.UserMapper">
-    <select id="queryById" resultMap="userResult">
+    <select id="queryById" resultMap="userResult" useCache="true">
         select
           u.id as u_id,
           u.username as u_username,
           u.hashed_password as u_hashed_password,
           a.province as a_province,
           a.city as a_city,
-          a.detail as a_detail
-        from user u, address a
-        where u.id=#{id} and a.u_id=#{id}
+          a.detail as a_detail,
+          b.id as b_id,
+          b.u_id as b_u_id,
+          b.title as b_title,
+          b.content as b_content,
+          b.create_time as b_create_time
+        from user u, address a, blog b
+        where u.id = #{id} and a.u_id = #{id} and b.u_id = u.id
     </select>
 
     <resultMap id="userResult" type="User">
-        <id property="id" column="u_id"/>
-        <result property="username" column="u_username"/>
-        <result property="hashedPassword" column="u_hashed_password"/>
+        <id property="id" column="u_id" />
+        <result property="username" column="u_username" />
+        <result property="hashedPassword" column="u_hashed_password" />
         <association property="address" javaType="Address">
-            <result property="province" column="a_province"/>
-            <result property="city" column="a_city"/>
-            <result property="detail" column="a_detail"/>
+            <result property="province" column="a_province" />
+            <result property="city" column="a_city" />
+            <result property="detail" column="a_detail" />
         </association>
+        <collection property="blogList" ofType="Blog">
+            <id property="id" column="b_id" />
+            <result property="title" column="b_title" />
+            <result property="content" column="b_content" />
+            <result property="createTime" column="b_create_time" />
+            <association property="user" javaType="User">
+                <id property="id" column="b_u_id" />
+            </association>
+        </collection>
     </resultMap>
+
+    <cache />
 </mapper>

@@ -1,9 +1,12 @@
 package com.yan.www.model;
 
+import java.util.List;
+
 public class User {
     private Integer id;
     private String username;
     private String hashedPassword;
+    private List<Blog> blogList;
     private Address address;
 
     public User() {
@@ -41,12 +44,21 @@ public class User {
         this.address = address;
     }
 
+    public List<Blog> getBlogList() {
+        return blogList;
+    }
+
+    public void setBlogList(List<Blog> blogList) {
+        this.blogList = blogList;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", hashedPassword='" + hashedPassword + '\'' +
+                ", blogList=" + blogList +
                 ", address=" + address +
                 '}';
     }

@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Blog {
     private Integer id;
+    private User user;
     private String title;
     private String content;
     private Date createTime;
@@ -43,10 +44,19 @@ public class Blog {
         this.createTime = createTime;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
         return "Blog{" +
                 "id=" + id +
+                ", user=" + user +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", createTime=" + createTime +

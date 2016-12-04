@@ -12,9 +12,9 @@
     </select>
 
     <resultMap id="blogResult" type="Blog">
-        <id property="id" column="id"/>
-        <result property="title" column="title"/>
-        <result property="content" column="content"/>
-        <result property="createTime" column="create_time" javaType="java.util.Date"/>
+        <id property="id" column="id" />
+        <result property="title" column="title" />
+        <result property="content" column="content" />
+        <result property="createTime" column="create_time" javaType="java.util.Date" />
     </resultMap>
 </mapper>
