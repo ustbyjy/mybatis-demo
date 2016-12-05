@@ -6,15 +6,15 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.apache.log4j.Logger;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.logging.Logger;
 
 
 public class UserTest {
-    private static Logger logger = Logger.getLogger(UserTest.class.getSimpleName());
+    private static Logger logger = org.apache.log4j.Logger.getLogger(UserTest.class);
 
     @Test
     public void testUserMapper() {
