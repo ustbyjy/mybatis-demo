@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yan.www.mapper.EmployeeMapperPlus">
+
+    <resultMap id="MyEmp" type="Employee">
+        <id column="id" property="id" />
+        <result column="last_name" property="lastName" />
+        <!-- 其他不指定的列会自动封装 -->
+        <result column="gender" property="gender" />
+        <result column="email" property="email" />
+    </resultMap>
+
+    <select id="getEmpById" resultMap="MyEmp">
+        SELECT * FROM employee WHERE id=#{id}
+    </select>
+</mapper>

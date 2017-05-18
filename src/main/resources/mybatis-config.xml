@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE configuration
-        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <properties resource="dbConfig.properties"></properties>
@@ -13,7 +12,7 @@
         <setting name="useColumnLabel" value="true" />
         <!-- 开启驼峰命名转换:Table{create_time} -> Entity{createTime} -->
         <setting name="mapUnderscoreToCamelCase" value="true" />
-
+        <!-- 指定日志实现 -->
         <setting name="logImpl" value="LOG4J" />
     </settings>
 
@@ -21,6 +20,9 @@
         <typeAlias type="com.yan.www.model.Blog" alias="Blog" />
         <typeAlias type="com.yan.www.model.User" alias="User" />
         <typeAlias type="com.yan.www.model.Address" alias="Address" />
+        <typeAlias type="com.yan.www.model.Employee" alias="Employee" />
+        <!-- 指定全路径下别名 -->
+        <!--<package name="com.yan.www.model"/>-->
     </typeAliases>
 
     <environments default="development">
@@ -38,5 +40,9 @@
     <mappers>
         <mapper resource="mapper/BlogMapper.xml" />
         <mapper resource="mapper/UserMapper.xml" />
+        <mapper resource="mapper/EmployeeMapper.xml" />
+        <mapper resource="mapper/EmployeeMapperPlus.xml" />
+        <!-- 批量注册：xml文件和mapper接口放在一个目录下 -->
+        <!--<package name="com.yan.www.mapper" />-->
     </mappers>
 </configuration>

@@ -43,4 +43,15 @@ CREATE TABLE address (
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
-INSERT INTO address(u_id, province, city, detail) VALUES (1, '内蒙古', '呼和浩特', '托克托县城关信用社家属楼');
+INSERT INTO address (u_id, province, city, detail) VALUES (1, '内蒙古', '呼和浩特', '托克托县城关信用社家属楼');
+
+
+CREATE TABLE `employee` (
+  `id`        INT(11)     NOT NULL AUTO_INCREMENT,
+  `last_name` VARCHAR(50) NOT NULL,
+  `email`     VARCHAR(50) NOT NULL,
+  `gender`    VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
