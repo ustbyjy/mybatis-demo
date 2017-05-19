@@ -51,7 +51,17 @@ CREATE TABLE `employee` (
   `last_name` VARCHAR(50) NOT NULL,
   `email`     VARCHAR(50) NOT NULL,
   `gender`    VARCHAR(20) NOT NULL,
+  `d_id`      INT(11),
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
+
+
+CREATE TABLE dept (
+  id        INT(11) NOT NULL AUTO_INCREMENT,
+  dept_name VARCHAR(255),
+  PRIMARY KEY (id)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8

@@ -14,6 +14,9 @@
         <setting name="mapUnderscoreToCamelCase" value="true" />
         <!-- 指定日志实现 -->
         <setting name="logImpl" value="LOG4J" />
+        <!-- 启动懒加载 -->
+        <setting name="lazyLoadingEnabled" value="true" />
+        <setting name="aggressiveLazyLoading" value="false" />
     </settings>
 
     <typeAliases>
@@ -21,6 +24,7 @@
         <typeAlias type="com.yan.www.model.User" alias="User" />
         <typeAlias type="com.yan.www.model.Address" alias="Address" />
         <typeAlias type="com.yan.www.model.Employee" alias="Employee" />
+        <typeAlias type="com.yan.www.model.Department" alias="Department" />
         <!-- 指定全路径下别名 -->
         <!--<package name="com.yan.www.model"/>-->
     </typeAliases>

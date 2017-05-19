@@ -11,4 +11,6 @@ import com.yan.www.model.Employee;
  */
 public interface EmployeeMapperPlus {
     Employee getEmpById(Integer id);
+
+    Employee getEmpAndDept(Integer id);
 }

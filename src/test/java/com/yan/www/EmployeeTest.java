@@ -99,4 +99,15 @@ public class EmployeeTest {
 
         session.close();
     }
+
+    @Test
+    public void testEmployeeMapper7() {
+
+        SqlSession session = SessionFactoryUtil.getInstance().openSession(true);
+        EmployeeMapperPlus employeeMapperPlus = session.getMapper(EmployeeMapperPlus.class);
+        Employee employee = employeeMapperPlus.getEmpAndDept(2);
+        logger.info(employee);
+
+        session.close();
+    }
 }

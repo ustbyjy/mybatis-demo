@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yan.www.mapper.EmployeeMapperPlus">
 
-    <resultMap id="MyEmp" type="Employee">
+    <resultMap id="MySimpleEmp" type="Employee">
         <id column="id" property="id" />
         <result column="last_name" property="lastName" />
         <!-- 其他不指定的列会自动封装 -->
@@ -11,7 +11,33 @@
         <result column="email" property="email" />
     </resultMap>
 
-    <select id="getEmpById" resultMap="MyEmp">
+    <resultMap id="MyDiffEmp" type="Employee">
+        <id column="id" property="id" />
+        <result column="last_name" property="lastName" />
+        <!-- 其他不指定的列会自动封装 -->
+        <result column="gender" property="gender" />
+        <result column="email" property="email" />
+        <result column="dept_id" property="dept.id" />
+        <result column="dept_name" property="dept.departmentName" />
+    </resultMap>
+
+    <resultMap id="MyDiffEmp2" type="Employee">
+        <id column="id" property="id" />
+        <result column="last_name" property="lastName" />
+        <!-- 其他不指定的列会自动封装 -->
+        <result column="gender" property="gender" />
+        <result column="email" property="email" />
+        <association column="dept_id" property="dept" javaType="Department">
+            <id column="dept_id" property="id" />
+            <result column="dept_name" property="departmentName" />
+        </association>
+    </resultMap>
+
+    <select id="getEmpById" resultMap="MySimpleEmp">
         SELECT * FROM employee WHERE id=#{id}
+    </select>
+
+    <select id="getEmpAndDept" resultMap="MyDiffEmp2">
+        SELECT e.id id,e.last_name last_name,e.gender gender,e.email email,e.d_id d_id,d.id dept_id,d.dept_name dept_name FROM employee e,department d WHERE e.d_id=d.id AND e.id=#{id}
     </select>
 </mapper>
