@@ -17,6 +17,7 @@
         <!-- 启动懒加载 -->
         <setting name="lazyLoadingEnabled" value="true" />
         <setting name="aggressiveLazyLoading" value="false" />
+        <setting name="cacheEnabled" value="true" />
     </settings>
 
     <typeAliases>
@@ -46,6 +47,7 @@
         <mapper resource="mapper/UserMapper.xml" />
         <mapper resource="mapper/EmployeeMapper.xml" />
         <mapper resource="mapper/EmployeeMapperPlus.xml" />
+        <mapper resource="mapper/EmployeeMapperDynamicSQL.xml" />
         <!-- 批量注册：xml文件和mapper接口放在一个目录下 -->
         <!--<package name="com.yan.www.mapper" />-->
     </mappers>

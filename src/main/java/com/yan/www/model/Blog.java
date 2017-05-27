@@ -1,8 +1,10 @@
 package com.yan.www.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Blog {
+public class Blog implements Serializable {
+    private static final long serialVersionUID = -3076320444677657344L;
     private Integer id;
     private User user;
     private String title;

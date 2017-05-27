@@ -1,6 +1,7 @@
 package com.yan.www;
 
 import com.yan.www.mapper.EmployeeMapper;
+import com.yan.www.mapper.EmployeeMapperDynamicSQL;
 import com.yan.www.mapper.EmployeeMapperPlus;
 import com.yan.www.model.Employee;
 import com.yan.www.util.SessionFactoryUtil;
@@ -8,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -109,5 +111,54 @@ public class EmployeeTest {
         logger.info(employee);
 
         session.close();
+    }
+
+    @Test
+    public void testEmployeeMapper8() {
+
+        SqlSession session = SessionFactoryUtil.getInstance().openSession(true);
+        EmployeeMapperDynamicSQL employeeMapperDynamicSQL = session.getMapper(EmployeeMapperDynamicSQL.class);
+        Employee employee = new Employee(1, "Admin", null, null);
+        employeeMapperDynamicSQL.updateEmp(employee);
+        logger.info(employee);
+
+        session.close();
+    }
+
+    @Test
+    public void testEmployeeMapper9() {
+
+        SqlSession session = SessionFactoryUtil.getInstance().openSession(true);
+        EmployeeMapperDynamicSQL employeeMapperDynamicSQL = session.getMapper(EmployeeMapperDynamicSQL.class);
+        List<Employee> employeeList = employeeMapperDynamicSQL.getEmpsConditionForeach(Arrays.asList(1, 2, 3, 4));
+        logger.info(employeeList);
+
+        session.close();
+    }
+
+    /**
+     * 只有一级缓存的会话提交或者关闭了，才会放到二级缓存里。
+     */
+    @Test
+    public void testEmployeeMapper10() {
+        SqlSession session1 = SessionFactoryUtil.getInstance().openSession();
+        SqlSession session2 = SessionFactoryUtil.getInstance().openSession();
+        SqlSession session3 = SessionFactoryUtil.getInstance().openSession();
+
+        EmployeeMapper employeeMapper1 = session1.getMapper(EmployeeMapper.class);
+        EmployeeMapper employeeMapper2 = session2.getMapper(EmployeeMapper.class);
+        EmployeeMapper employeeMapper3 = session3.getMapper(EmployeeMapper.class);
+
+        Employee employee1 = employeeMapper1.getEmpById(2);
+        logger.info(employee1);
+        session1.close();
+
+        Employee employee2 = employeeMapper2.getEmpById(2);
+        logger.info(employee2);
+        session2.close();
+
+        Employee employee3 = employeeMapper3.getEmpById(2);
+        logger.info(employee3);
+        session3.close();
     }
 }

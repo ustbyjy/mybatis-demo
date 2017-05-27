@@ -1,5 +1,7 @@
 package com.yan.www.model;
 
+import java.io.Serializable;
+
 /**
  * Created with IntelliJ IDEA.
  * Description:
@@ -7,7 +9,8 @@ package com.yan.www.model;
  * Date: 2017/5/17
  * Time: 14:41
  */
-public class Employee {
+public class Employee implements Serializable {
+    private static final long serialVersionUID = -8693408847242892781L;
     private Integer id;
     private String lastName;
     private String email;

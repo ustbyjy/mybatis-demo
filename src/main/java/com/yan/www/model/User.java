@@ -1,8 +1,10 @@
 package com.yan.www.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class User {
+public class User implements Serializable {
+    private static final long serialVersionUID = -3110516788536172120L;
     private Integer id;
     private String username;
     private String hashedPassword;

@@ -1,9 +1,12 @@
 package com.yan.www.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2016/12/2 0002.
  */
-public class Address {
+public class Address implements Serializable {
+    private static final long serialVersionUID = 2529135899547199617L;
     private String province;
     private String city;
     private String detail;

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yan.www.mapper.EmployeeMapperDynamicSQL">
+
+    <update id="updateEmp">
+        UPDATE employee
+        <set>
+            <if test="lastName != null">
+                last_name=#{lastName},
+            </if>
+            <if test="email != null">
+                email=#{email},
+            </if>
+            <if test="gender != null">
+                email=#{gender}
+            </if>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <select id="getEmpsConditionForeach" resultType="Employee">
+        SELECT * FROM employee WHERE id IN
+        <foreach collection="ids" item="item_id" separator="," open="(" close=")">
+            #{item_id}
+        </foreach>
+    </select>
+</mapper>
