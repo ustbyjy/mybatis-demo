@@ -3,6 +3,7 @@ package com.yan.www.mapper;
 import com.yan.www.model.Employee;
 import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import java.util.Map;
  * Date: 2017/5/17
  * Time: 14:44
  */
+@Repository
 public interface EmployeeMapper {
 
     /**
@@ -41,4 +43,6 @@ public interface EmployeeMapper {
     boolean updateEmp(Employee employee);
 
     void deleteEmpById(Integer id);
+
+    List<Employee> getEmps();
 }

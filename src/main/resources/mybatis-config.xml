@@ -2,7 +2,7 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <properties resource="dbConfig.properties"></properties>
+    <!--<properties resource="dbConfig.properties"></properties>-->
 
     <!-- 配置全局属性 -->
     <settings>
@@ -20,19 +20,22 @@
         <setting name="cacheEnabled" value="true" />
     </settings>
 
+    <!--
     <typeAliases>
         <typeAlias type="com.yan.www.model.Blog" alias="Blog" />
         <typeAlias type="com.yan.www.model.User" alias="User" />
         <typeAlias type="com.yan.www.model.Address" alias="Address" />
         <typeAlias type="com.yan.www.model.Employee" alias="Employee" />
         <typeAlias type="com.yan.www.model.Department" alias="Department" />
-        <!-- 指定全路径下别名 -->
-        <!--<package name="com.yan.www.model"/>-->
+        &lt;!&ndash; 指定全路径下别名 &ndash;&gt;
+        &lt;!&ndash;<package name="com.yan.www.model"/>&ndash;&gt;
     </typeAliases>
+    -->
 
+    <!--
     <environments default="development">
         <environment id="development">
-            <transactionManager type="JDBC" />
+            <transactionManager  type="JDBC" />
             <dataSource type="POOLED">
                 <property name="driver" value="${driver}" />
                 <property name="url" value="${url}" />
@@ -41,14 +44,17 @@
             </dataSource>
         </environment>
     </environments>
+    -->
 
+    <!--
     <mappers>
         <mapper resource="mapper/BlogMapper.xml" />
         <mapper resource="mapper/UserMapper.xml" />
         <mapper resource="mapper/EmployeeMapper.xml" />
         <mapper resource="mapper/EmployeeMapperPlus.xml" />
         <mapper resource="mapper/EmployeeMapperDynamicSQL.xml" />
-        <!-- 批量注册：xml文件和mapper接口放在一个目录下 -->
-        <!--<package name="com.yan.www.mapper" />-->
+        &lt;!&ndash; 批量注册：xml文件和mapper接口放在一个目录下 &ndash;&gt;
+        &lt;!&ndash;<package name="com.yan.www.mapper" />&ndash;&gt;
     </mappers>
+    -->
 </configuration>

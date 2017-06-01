@@ -3,11 +3,17 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yan.www.mapper.EmployeeMapper">
 
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache"></cache>
+
     <!-- eviction: 缓存的回收策略, flushInterval: 缓存刷新时间, size: 缓存多少个数据, readOnly: 是否只读 -->
-    <cache eviction="LRU" flushInterval="60000" size="1024" readOnly="false"></cache>
+    <!--<cache eviction="LRU" flushInterval="60000" size="1024" readOnly="false"></cache>-->
 
     <select id="getEmpById" resultType="Employee">
         SELECT id,last_name lastName,email,gender FROM employee WHERE id=#{id}
+    </select>
+
+    <select id="getEmps" resultType="Employee">
+        SELECT * FROM employee
     </select>
 
     <select id="getEmpByMap" resultType="Employee" parameterType="hashmap">
