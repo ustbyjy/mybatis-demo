@@ -63,4 +63,5 @@ $RECYCLE.BIN/
 *iml
 .idea/*
 target/
+cache/
 
