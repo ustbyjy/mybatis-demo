@@ -1,18 +1,19 @@
 package com.yan.www;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.yan.www.mapper.EmployeeMapper;
 import com.yan.www.mapper.EmployeeMapperDynamicSQL;
 import com.yan.www.mapper.EmployeeMapperPlus;
 import com.yan.www.model.Employee;
 import com.yan.www.util.SessionFactoryUtil;
+import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class EmployeeTest {
     private static Logger logger = Logger.getLogger(EmployeeTest.class);
@@ -160,5 +161,68 @@ public class EmployeeTest {
         Employee employee3 = employeeMapper3.getEmpById(2);
         logger.info(employee3);
         session3.close();
+    }
+
+    @Test
+    public void testPageHelper() {
+        SqlSession session = SessionFactoryUtil.getInstance().openSession();
+        try {
+            EmployeeMapper mapper = session.getMapper(EmployeeMapper.class);
+            Page<Employee> page = PageHelper.startPage(1, 5);
+            List<Employee> emps = mapper.getEmps();
+            PageInfo<Employee> pageInfo = new PageInfo<Employee>(emps);
+            for (Employee employee : emps) {
+                System.out.println(employee);
+            }
+            System.err.println(page);
+            System.err.println(pageInfo);
+        } finally {
+            session.close();
+        }
+    }
+
+    @Test
+    public void testInsert() {
+        SqlSession session = SessionFactoryUtil.getInstance().openSession(true);
+        try {
+            EmployeeMapper mapper = session.getMapper(EmployeeMapper.class);
+            for (int i = 0; i < 20; i++) {
+                Employee employee = new Employee();
+                int number = Math.abs(new Random().nextInt());
+                employee.setLastName("用户" + number);
+                String[] genders = {"Male", "Female"};
+                employee.setGender(genders[new Random().nextInt(2)]);
+                employee.setEmail("user" + number + "@zulong.com");
+
+                mapper.addEmp(employee);
+            }
+        } finally {
+            session.close();
+        }
+    }
+
+    @Test
+    public void testBatch() {
+        SqlSession session = SessionFactoryUtil.getInstance().openSession();
+//        SqlSession session = SessionFactoryUtil.getInstance().openSession(ExecutorType.BATCH);
+        long start = System.currentTimeMillis();
+        try {
+            EmployeeMapper mapper = session.getMapper(EmployeeMapper.class);
+            for (int i = 0; i < 10000; i++) {
+                Employee employee = new Employee();
+                int number = Math.abs(new Random().nextInt());
+                employee.setLastName("用户" + number);
+                String[] genders = {"Male", "Female"};
+                employee.setGender(genders[new Random().nextInt(2)]);
+                employee.setEmail("user" + number + "@zulong.com");
+
+                mapper.addEmp(employee);
+            }
+            session.commit();
+            long end = System.currentTimeMillis();
+            System.err.println("Time:" + (end - start));
+        } finally {
+            session.close();
+        }
     }
 }
