@@ -8,7 +8,6 @@ import com.yan.www.mapper.EmployeeMapperDynamicSQL;
 import com.yan.www.mapper.EmployeeMapperPlus;
 import com.yan.www.model.Employee;
 import com.yan.www.util.SessionFactoryUtil;
-import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -195,6 +194,7 @@ public class EmployeeTest {
                 employee.setEmail("user" + number + "@zulong.com");
 
                 mapper.addEmp(employee);
+                System.out.println("id: " + employee.getId());
             }
         } finally {
             session.close();
