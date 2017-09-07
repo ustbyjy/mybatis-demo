@@ -3,11 +3,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yan.www.mapper.BlogMapper">
     <select id="selectBlog" resultType="Blog">
-        select * from blog where id=#{id}
+        SELECT *
+        FROM blog
+        WHERE id = #{id}
     </select>
 
     <select id="queryById" resultMap="blogResult">
-        select * from blog where id=#{id}
+        SELECT *
+        FROM blog
+        WHERE id = #{id}
     </select>
 
     <resultMap id="blogResult" type="Blog">

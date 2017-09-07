@@ -64,4 +64,4 @@ CREATE TABLE dept (
   PRIMARY KEY (id)
 )
   ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
+  DEFAULT CHARSET = utf8;

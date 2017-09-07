@@ -8,11 +8,18 @@
     <!--<cache eviction="LRU" flushInterval="60000" size="1024" readOnly="false"></cache>-->
 
     <select id="getEmpById" resultType="Employee">
-        SELECT id,last_name lastName,email,gender FROM employee WHERE id=#{id}
+        SELECT
+            id,
+            last_name lastName,
+            email,
+            gender
+        FROM employee
+        WHERE id = #{id}
     </select>
 
     <select id="getEmps" resultType="Employee">
-        SELECT * FROM employee
+        SELECT *
+        FROM employee
     </select>
 
     <select id="getEmpByMap" resultType="Employee" parameterType="hashmap">
@@ -24,32 +31,48 @@
     </select>
 
     <select id="getEmpByIdAndLastName" resultType="Employee">
-        SELECT id,last_name lastName,email,gender FROM employee WHERE id=#{id} AND last_name=#{lastName}
+        SELECT
+            id,
+            last_name lastName,
+            email,
+            gender
+        FROM employee
+        WHERE id = #{id} AND last_name = #{lastName}
     </select>
 
     <select id="getEmpsByLastNameLike" resultType="Employee">
-        SELECT * FROM employee WHERE last_name LIKE #{lastName}
+        SELECT *
+        FROM employee
+        WHERE last_name LIKE #{lastName}
     </select>
 
     <select id="getEmpsByLastNameLikeReturnMap" resultType="Employee">
-        SELECT * FROM employee WHERE last_name LIKE #{lastName}
+        SELECT *
+        FROM employee
+        WHERE last_name LIKE #{lastName}
     </select>
 
     <select id="getEmpByIdReturnMap" resultType="map">
-        SELECT * FROM employee WHERE id LIKE #{id}
+        SELECT *
+        FROM employee
+        WHERE id LIKE #{id}
     </select>
 
     <insert id="addEmp" parameterType="Employee" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO employee(last_name,email,gender) VALUES (#{lastName},#{email},#{gender})
+        <selectKey keyProperty="id" resultType="int" order="BEFORE">
+            SELECT IF(MAX(id) IS NULL, 1, MAX(id) + 2) AS newId FROM employee
+        </selectKey>
+        INSERT INTO employee (id, last_name, email, gender) VALUES (#{id}, #{lastName}, #{email}, #{gender})
     </insert>
 
     <update id="updateEmp" parameterType="Employee">
         UPDATE employee
-        SET last_name=#{lastName},email=#{email},gender=#{gender}
-        WHERE id=#{id}
+        SET last_name = #{lastName}, email = #{email}, gender = #{gender}
+        WHERE id = #{id}
     </update>
 
     <delete id="deleteEmpById" parameterType="integer">
-        DELETE FROM employee WHERE id=#{id}
+        DELETE FROM employee
+        WHERE id = #{id}
     </delete>
 </mapper>

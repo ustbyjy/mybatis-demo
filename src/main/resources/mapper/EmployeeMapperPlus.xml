@@ -34,10 +34,21 @@
     </resultMap>
 
     <select id="getEmpById" resultMap="MySimpleEmp">
-        SELECT * FROM employee WHERE id=#{id}
+        SELECT *
+        FROM employee
+        WHERE id = #{id}
     </select>
 
     <select id="getEmpAndDept" resultMap="MyDiffEmp2">
-        SELECT e.id id,e.last_name last_name,e.gender gender,e.email email,e.d_id d_id,d.id dept_id,d.dept_name dept_name FROM employee e,department d WHERE e.d_id=d.id AND e.id=#{id}
+        SELECT
+            e.id        id,
+            e.last_name last_name,
+            e.gender    gender,
+            e.email     email,
+            e.d_id      d_id,
+            d.id        dept_id,
+            d.dept_name dept_name
+        FROM employee e, department d
+        WHERE e.d_id = d.id AND e.id = #{id}
     </select>
 </mapper>
