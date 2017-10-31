@@ -32,13 +32,13 @@
     </typeAliases>
 
     <plugins>
-        <!--<plugin interceptor="com.yan.www.interceptor.MyFirstInterceptor">
+        <!--
+        <plugin interceptor="com.yan.www.interceptor.MyFirstInterceptor">
             <property name="username" value="root" />
             <property name="password" value="123456" />
-        </plugin>-->
-        <plugin interceptor="com.github.pagehelper.PageInterceptor">
-
         </plugin>
+        -->
+        <plugin interceptor="com.github.pagehelper.PageInterceptor" />
     </plugins>
 
     <environments default="development">
@@ -59,6 +59,7 @@
         <mapper resource="mapper/EmployeeMapper.xml" />
         <mapper resource="mapper/EmployeeMapperPlus.xml" />
         <mapper resource="mapper/EmployeeMapperDynamicSQL.xml" />
+        <mapper resource="mapper/CompanyMapper.xml" />
         <!-- 批量注册：xml文件和mapper接口放在一个目录下 -->
         <!--<package name="com.yan.www.mapper" />-->
     </mappers>
