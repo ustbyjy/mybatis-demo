@@ -58,11 +58,15 @@
         WHERE id LIKE #{id}
     </select>
 
-    <insert id="addEmp" parameterType="Employee" useGeneratedKeys="true" keyProperty="id">
+    <!--<insert id="addEmp" parameterType="Employee" useGeneratedKeys="true" keyProperty="id">
         <selectKey keyProperty="id" resultType="int" order="BEFORE">
             SELECT IF(MAX(id) IS NULL, 1, MAX(id) + 2) AS newId FROM employee
         </selectKey>
         INSERT INTO employee (id, last_name, email, gender) VALUES (#{id}, #{lastName}, #{email}, #{gender})
+    </insert>-->
+
+    <insert id="addEmp" parameterType="Employee">
+        INSERT INTO employee (last_name, email, gender) VALUES (#{lastName}, #{email}, #{gender})
     </insert>
 
     <update id="updateEmp" parameterType="Employee">

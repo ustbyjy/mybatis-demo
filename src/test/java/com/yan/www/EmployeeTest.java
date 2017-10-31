@@ -182,7 +182,7 @@ public class EmployeeTest {
 
     @Test
     public void testInsert() {
-        SqlSession session = SessionFactoryUtil.getInstance().openSession(true);
+        SqlSession session = SessionFactoryUtil.getInstance().openSession(false);
         try {
             EmployeeMapper mapper = session.getMapper(EmployeeMapper.class);
             for (int i = 0; i < 20; i++) {
@@ -196,6 +196,8 @@ public class EmployeeTest {
                 mapper.addEmp(employee);
                 System.out.println("id: " + employee.getId());
             }
+            session.flushStatements();
+            session.commit();
         } finally {
             session.close();
         }
