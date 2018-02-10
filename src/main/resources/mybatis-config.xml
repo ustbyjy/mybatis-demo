@@ -59,7 +59,7 @@
         <mapper resource="mapper/EmployeeMapper.xml" />
         <mapper resource="mapper/EmployeeMapperPlus.xml" />
         <mapper resource="mapper/EmployeeMapperDynamicSQL.xml" />
-        <mapper resource="mapper/CompanyMapper.xml" />
+        <!--<mapper resource="mapper/CompanyMapper.xml" />-->
         <!-- 批量注册：xml文件和mapper接口放在一个目录下 -->
         <!--<package name="com.yan.www.mapper" />-->
     </mappers>

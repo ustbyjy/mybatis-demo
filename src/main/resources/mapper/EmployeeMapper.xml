@@ -69,6 +69,10 @@
         INSERT INTO employee (last_name, email, gender) VALUES (#{lastName}, #{email}, #{gender})
     </insert>
 
+    <insert id="addEmpWithId">
+        INSERT INTO employee (id, last_name, email, gender) VALUES (#{id}, #{lastName}, #{email}, #{gender})
+    </insert>
+
     <update id="updateEmp" parameterType="Employee">
         UPDATE employee
         SET last_name = #{lastName}, email = #{email}, gender = #{gender}

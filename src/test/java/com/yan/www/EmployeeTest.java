@@ -25,6 +25,7 @@ public class EmployeeTest {
 
         Employee employee = new Employee(null, "张三", "zhangsan@163.com", "Male");
         employeeMapper.addEmp(employee);
+//        employeeMapper.addEmpWithId(employee, 1);
         logger.info(employee);
 
         employee.setEmail("zhangsan@qq.com");

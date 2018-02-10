@@ -40,6 +40,8 @@ public interface EmployeeMapper {
 
     Integer addEmp(Employee employee);
 
+    Integer addEmpWithId(@Param("employee") Employee employee, @Param("id") Integer id);
+
     boolean updateEmp(Employee employee);
 
     void deleteEmpById(Integer id);
