@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yan.www.mapper.EmployeeMapper">
-    <cache type="org.mybatis.caches.ehcache.EhcacheCache"></cache>
+    <!--<cache type="org.mybatis.caches.ehcache.EhcacheCache" />-->
 
     <!-- eviction: 缓存的回收策略, flushInterval: 缓存刷新时间, size: 缓存多少个数据, readOnly: 是否只读 -->
     <!--<cache eviction="LRU" flushInterval="60000" size="1024" readOnly="false"></cache>-->
@@ -69,8 +69,15 @@
         INSERT INTO employee (last_name, email, gender) VALUES (#{lastName}, #{email}, #{gender})
     </insert>
 
+    <insert id="addEmpBatch" parameterType="list">
+        INSERT INTO employee (last_name, email, gender) VALUES
+        <foreach collection="empList" item="emp" separator=",">
+            (#{emp.lastName}, #{emp.email}, #{emp.gender})
+        </foreach>
+    </insert>
+
     <insert id="addEmpWithId">
-        INSERT INTO employee (id, last_name, email, gender) VALUES (#{id}, #{lastName}, #{email}, #{gender})
+        INSERT INTO employee (id, last_name, email, gender) VALUES (#{id}, #{employee.lastName}, #{employee.email}, #{employee.gender})
     </insert>
 
     <update id="updateEmp" parameterType="Employee">
@@ -79,7 +86,20 @@
         WHERE id = #{id}
     </update>
 
+    <update id="updateEmpBatch" parameterType="list">
+        <foreach collection="empList" separator=";" item="emp">
+            UPDATE employee
+            SET last_name = #{emp.lastName}, email = #{emp.email}, gender = #{emp.gender}
+            WHERE id = #{emp.id}
+        </foreach>
+    </update>
+
     <delete id="deleteEmpById" parameterType="integer">
+        DELETE FROM employee
+        WHERE id = #{id}
+    </delete>
+
+    <delete id="deleteEmpByIds" parameterType="list">
         DELETE FROM employee
         WHERE id = #{id}
     </delete>

@@ -164,6 +164,57 @@ public class EmployeeTest {
     }
 
     @Test
+    public void testEmployeeMapper11() {
+
+        SqlSession session = SessionFactoryUtil.getInstance().openSession();
+        EmployeeMapper employeeMapper = session.getMapper(EmployeeMapper.class);
+
+        Employee employee1 = new Employee(1, "A1", "A1@163.com", "Male");
+        Employee employee2 = new Employee(2, "A2", "A2@163.com", "Male");
+        Employee employee3 = new Employee(3, "A3", "A3@163.com", "Female");
+        Integer addResult1 = employeeMapper.addEmpWithId(employee1, 1);
+        Integer addResult2 = employeeMapper.addEmpWithId(employee2, 2);
+        Integer addResult3 = employeeMapper.addEmpWithId(employee3, 3);
+        logger.info("addResult1=" + addResult1);
+        logger.info("addResult2=" + addResult2);
+        logger.info("addResult3=" + addResult3);
+
+        employee1.setLastName("B1");
+        employee2.setGender("Female");
+        employee3.setEmail("A3@qq.com");
+        List<Employee> empList = new ArrayList<>();
+        empList.add(employee1);
+        empList.add(employee2);
+        empList.add(employee3);
+        Integer updateResult1 = employeeMapper.updateEmpBatch(empList);
+        logger.info("updateResult1=" + updateResult1);
+
+        session.commit();
+        session.close();
+    }
+
+    @Test
+    public void testEmployeeMapper12() {
+
+        SqlSession session = SessionFactoryUtil.getInstance().openSession();
+        EmployeeMapper employeeMapper = session.getMapper(EmployeeMapper.class);
+
+        Employee employee1 = new Employee(1, "A1", "A1@163.com", "Male");
+        Employee employee2 = new Employee(2, "A2", "A2@163.com", "Male");
+        Employee employee3 = new Employee(3, "A3", "A3@163.com", "Female");
+
+        List<Employee> empList = new ArrayList<>();
+        empList.add(employee1);
+        empList.add(employee2);
+        empList.add(employee3);
+        Integer addBatchResult = employeeMapper.addEmpBatch(empList);
+        logger.info("addBatchResult=" + addBatchResult);
+
+        session.commit();
+        session.close();
+    }
+
+    @Test
     public void testPageHelper() {
         SqlSession session = SessionFactoryUtil.getInstance().openSession();
         try {
