@@ -32,12 +32,19 @@
 
     <select id="getEmpByIdAndLastName" resultType="Employee">
         SELECT
-            id,
-            last_name lastName,
-            email,
-            gender
+        id,
+        last_name lastName,
+        email,
+        gender
         FROM employee
-        WHERE id = #{id} AND last_name = #{lastName}
+        <where>
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="lastName != null">
+                AND last_name = #{lastName}
+            </if>
+        </where>
     </select>
 
     <select id="getEmpsByLastNameLike" resultType="Employee">
@@ -58,7 +65,8 @@
         WHERE id LIKE #{id}
     </select>
 
-    <!--<insert id="addEmp" parameterType="Employee" useGeneratedKeys="true" keyProperty="id">
+    <!--
+    <insert id="addEmp" parameterType="Employee" useGeneratedKeys="true" keyProperty="id">
         <selectKey keyProperty="id" resultType="int" order="BEFORE">
             SELECT IF(MAX(id) IS NULL, 1, MAX(id) + 2) AS newId FROM employee
         </selectKey>
