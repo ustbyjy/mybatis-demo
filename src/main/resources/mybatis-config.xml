@@ -32,13 +32,11 @@
     </typeAliases>
 
     <plugins>
-        <!--
         <plugin interceptor="com.yan.www.interceptor.MyFirstInterceptor">
             <property name="username" value="root" />
             <property name="password" value="123456" />
         </plugin>
-        -->
-        <plugin interceptor="com.github.pagehelper.PageInterceptor" />
+        <!--<plugin interceptor="com.github.pagehelper.PageInterceptor" />-->
     </plugins>
 
     <environments default="development">

@@ -2,6 +2,8 @@ package com.yan.www.interceptor;
 
 import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.plugin.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.util.Properties;
@@ -17,22 +19,25 @@ import java.util.Properties;
         @Signature(type = StatementHandler.class, method = "prepare", args = {Connection.class, Integer.class})
 })
 public class MyFirstInterceptor implements Interceptor {
+
+    private static Logger logger = LoggerFactory.getLogger(MyFirstInterceptor.class);
+
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
-        System.err.println("MyFirstInterceptor intercept: " + invocation.getMethod());
+        logger.info("intercept: " + invocation.getMethod());
         Object proceed = invocation.proceed();
         return proceed;
     }
 
     @Override
     public Object plugin(Object target) {
-        System.err.println("MyFirstInterceptor plugin: " + target);
+        logger.info("plugin: " + target);
         Object wrap = Plugin.wrap(target, this);
         return wrap;
     }
 
     @Override
     public void setProperties(Properties properties) {
-        System.err.println("MyFirstInterceptor setProperties: " + properties);
+        logger.info("setProperties: " + properties);
     }
 }
